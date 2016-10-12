@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        include bootstrap
+        title= '知點'
+    body
+        div(style='float:left')
+            a(href='/') Home
+        div(style='float:right')
+            if (username && authenticated)
+                a(href='/users/signout',style='margin:10px;') Signout
+                a(href='/users/add_article',style='margin:10px;') Add Article
+                a(href='/users/profile',style='margin:10px;') Profile
+                span #{username}
+            else
+                a(href='/users/signin',style='margin:10px;') Login
+                a(href='/users/register',style='margin:10px;') Register
+                a(href='/users/forget',style='margin:10px;') Forget Password
+        div(style='padding:50px;')
+            h1= title
+
+for article in blogs
+    div
+        div(style='float:left;margin-top:10px;')=article.Username
+        div(style='float:right;margin-top:10px;')=article.CreateDate
+        br
+        div(style='clear:both')=article.Article
+        a(href='/users/message/'+article.id,style='float:right;margin-top:105px;margin-right:20px;') Leave a message
+        hr(style='margin-top:110px;')

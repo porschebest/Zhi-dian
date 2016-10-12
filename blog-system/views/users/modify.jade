@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        include ../bootstrap
+        title= '知點 Modify'
+    nav
+        div(style='float:left')
+            a(href='/') Home
+        div(style='float:right')
+            if (username && authenticated)
+                a(href='/users/signout',style='margin:10px;') Signout
+                a(href='/users/add_article',style='margin:10px;') Add Article
+                a(href='/users/profile',style='margin:10px;') Profile
+                span #{username}
+            else
+                a(href='/users/signin',style='margin:10px;') Login
+                a(href='/users/register',style='margin:10px;') Register
+                a(href='/users/forget',style='margin:10px;') Forget Password
+     body
+        div(style='padding:50px;')
+        form(name='modify',action='/apis/update/' + messageID ,method='post')
+            h1 Modify article
+            div
+                p
+                    span Writer:
+                    label(style='padding-right:50px') #{username}
+                p
+                    textarea(cols="50", rows="25", style='resize : none;', name="Content") #{blogs[0].Article}
+                div
+                    span(style='padding-right:337px;')
+                    input(class='btn btn-primary',type='submit',name='submit',value='Update')
