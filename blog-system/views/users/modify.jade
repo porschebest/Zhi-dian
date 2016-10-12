@@ -1,12 +1,13 @@
 doctype html
 html
     head
-        include ../bootstrap
+        include bootstrap
         title= '知點 Modify'
     nav
-        div(style='float:left')
-            a(href='/') Home
-        div(style='float:right')
+        div.logo
+            a(href='/')
+              img(src='../images/LOGO.svg')
+        div.nav-content
             if (username && authenticated)
                 a(href='/users/signout',style='margin:10px;') Signout
                 a(href='/users/add_article',style='margin:10px;') Add Article

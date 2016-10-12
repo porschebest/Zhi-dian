@@ -1,12 +1,13 @@
 doctype html
 html
     head
-        include ../bootstrap
+        include bootstrap
         title= 'Forget Password'
     nav
-        div(style='float:left')
-            a(href='/') Home
-        div(style='float:right')
+        div.logo
+            a(href='/')
+              img(src='../images/LOGO.svg')
+        div.nav-content
             a(href='/users/register',style='margin:10px;') Register
             a(href='/users/forget',style='margin:10px;') Forget Password
     body
