@@ -1,29 +1,62 @@
 doctype html
 html
     head
-        include bootstrap
-        title= 'Leave a message'
-    nav
-        div.logo
+        include message_include
+
+        title= '知點'
+    nav.nav-div
+        div.head.pull-right
+            a(href='/me')
+                img.img-circle.me(src='../../images/me.png')
+        ul.cd-primary-nav
+         if (username && authenticated)
+            li
+                a(href='/users/signout') 登出
+            li
+                a(href='/users/add_article') 新增文章
+            li
+                a(href='/users/profile') 文章列表
+            li
+                a(href='/users/signout') 程式
+            li
+                a(href='/users/signout') 設計
+            li
+                a(href='/users/signout') 創業
+         else
+            li
+                a(href='/me')
+                    img.img-circle(src='../../images/me.png',height='100px;')
+            li
+                a(href='/')
+                  h3  關於我
+            li
+                a(href='/users/signout')
+                  h3 程式
+            li
+                a(href='/users/signout')
+                  h3 設計
+            li
+                a(href='/users/signout')
+                  h3 創業
+        div.logo.center-block
             a(href='/')
-              img(src='../images/LOGO.svg')
-        div.nav-content
-            if (username && authenticated)
-                a(href='/users/signout',style='margin:10px;') Signout
-                a(href='/users/add_article',style='margin:10px;') Add Article
-                a(href='/users/profile',style='margin:10px;') Profile
-                span #{username}
-            else
-                a(href='/users/signin',style='margin:10px;') Login
-                a(href='/users/register',style='margin:10px;') Register
-                a(href='/users/forget',style='margin:10px;') Forget Password
+              img(src='../../images/LOGO.svg')
     body
-        div(style='padding:50px;')
+    div.cd-overlay-nav
+        span
+    div.cd-overlay-content
+        span
+    a.cd-nav-trigger.pull-left  Menu
+        span.cd-icon
+    // Round animated nav End
+    div(style='padding:50px;')
 
             h1= title
             for article in blogs
                 div
-                    div(style='float:left;margin-top:10px;')=article.Username
+                    div(style='float:left;margin-top:10px;')
+                      img.img-circle.me(src='../../images/me1.png')
+                    div(style='float:right;margin-top:10px;')=article.Title
                     div(style='float:right;margin-top:10px;')=article.CreateDate
                     br
                     div(style='clear:both')=article.Article

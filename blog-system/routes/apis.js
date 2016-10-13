@@ -41,8 +41,10 @@ router.post('/add', function(req, res, next) {
     }
     new Blog({
         Username: req.session.name,
+        Title:req.body.Title,
         Article: req.body.Content,
-        CreateDate: Date.now()
+        Tags:req.body.Tags,
+        CreateDate: req.body.Date
     }).save(function(err) {
         if (err) {
             console.log('Failed to save to DB');
@@ -63,7 +65,10 @@ router.post('/update/:id', function(req, res, next) {
     Blog.update({
         _id: req.params.id
     }, {
-        Article: req.body.Content
+        Title:req.body.Title,
+        Article: req.body.Content,
+        Tags:req.body.Tags,
+        CreateDate: req.body.Date
     }, function(err) {
         if (err) {
             console.log('Failed to update article!');

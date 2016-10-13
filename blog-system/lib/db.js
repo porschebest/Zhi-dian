@@ -3,7 +3,9 @@ var Schema = mongoose.Schema;
 
 var Blog = new Schema({
   Username:String,
+  Title:String,
   Article:String,
+  Tags:String,
   CreateDate:Date
 });
 

@@ -2,39 +2,80 @@ doctype html
 html
     head
         include bootstrap
-        title= '知點'
-    nav
-        div.logo
-            a(href='/')
-              img(src='images/LOGO.svg')
-        div.nav-content
-            if (username && authenticated)
-                a(href='/me')
-                    img.img-circle.me(src='images/me.png')
-                a(href='/users/signout',style='margin:10px;') Signout
-                a(href='/users/add_article',style='margin:10px;') Add Article
-                a(href='/users/profile',style='margin:10px;') Profile
-            else
-                a(href='/me')
-                    img.img-circle.me(src='images/me.png')
-                a(href='/users/signin',style='margin:10px;') Login
-                a(href='/users/register',style='margin:10px;') Register
-                a(href='/users/forget',style='margin:10px;') Forget Password
 
+        title= '知點'
+    nav.nav-div
+        // thumbnail
+        div.head.pull-right
+            a(href='/me')
+                img.img-circle.me(src='images/me.png')
+        ul.cd-primary-nav
+         if (username && authenticated)
+            li
+                a(href='/users/signout') 登出
+            li
+                a(href='/users/add_article') 新增文章
+            li
+                a(href='/users/profile') 文章列表
+            li
+                a(href='/users/signout') 程式
+            li
+                a(href='/users/signout') 設計
+            li
+                a(href='/users/signout') 創業
+         else
+            li
+                a(href='/me')
+                    img.img-circle(src='images/me.png',height='100px;')
+            li
+                a(href='/')
+                  h3  關於我
+            li
+                a(href='/users/signout')
+                  h3 程式
+            li
+                a(href='/users/signout')
+                  h3 設計
+            li
+                a(href='/users/signout')
+                  h3 創業
+        // LOGO
+        div.logo.center-block
+            a(href='/')
+              <img src='images/LOGO.svg'/> 點
     body
-    div.hero.container-fluid
+
+    div.cd-overlay-nav
+        span
+    div.cd-overlay-content
+        span
+    a.cd-nav-trigger.pull-left  Menu
+        span.cd-icon
+    // Round animated nav End
+
+    div.hero.container-fluid#hero
         div.hero-title
-            h1  知點
-            h2  給我一個知點，可以撐起全宇宙
+            h1
+                <img src='images/LOGO.svg' style='height:80px; padding-left:10px;'/> 點
+            h3  給我一個知點，可以撐起全宇宙
             h3  程式｜競賽｜創業 心得筆記
+            br
+            button.btn.more(style='margin-left:10px;')
+                a(href="#first")了解更多
     br
     br
     br
+    div#first
     for article in blogs
-        div
-            div(style='float:left;margin-top:10px;')=article.Username
+        div.container-fluid.col-md-12.bg-warning
+          div(style='padding:80px;')
+            div(style='float:left;margin-top:10px;')
+              img.img-circle.me(src='../../images/me1.png')
             div(style='float:right;margin-top:10px;')=article.CreateDate
             br
+          div(style='padding:80px;')
+            div(style='clear:both')=article.Title
             div(style='clear:both')=article.Article
-            a(href='/users/message/'+article.id,style='float:right;margin-top:105px;margin-right:20px;') Leave a message
-            hr(style='margin-top:110px;')
+            div(style='clear:both')=article.Tags
+            a(href='/users/message/'+article.id).btn.btn-warning.pull-right Read More
+            hr(style='margin-top:110px;margin-bottom:30px;')

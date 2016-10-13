@@ -2,31 +2,49 @@ doctype html
 html
     head
         include bootstrap
+
         title= '知點'
-    nav
-        div.logo
+    nav.nav-div
+        div.head.pull-right
+            a(href='/me')
+                img.img-circle.me(src='images/me.png')
+        ul.cd-primary-nav
+         if (username && authenticated)
+            li
+                a(href='/users/signout') 登出
+            li
+                a(href='/users/add_article') 新增文章
+            li
+                a(href='/users/profile') 文章列表
+            li
+                a(href='/users/signout') 程式
+            li
+                a(href='/users/signout') 設計
+            li
+                a(href='/users/signout') 創業
+         else
+            li
+                a(href='/me')
+                    img.img-circle(src='images/me.png',height='100px;')
+            li
+                a(href='/')
+                  h3  回首頁
+            li
+                a(href='/users/signout')
+                  h3 程式
+            li
+                a(href='/users/signout')
+                  h3 設計
+            li
+                a(href='/users/signout')
+                  h3 創業
+        div.logo.center-block
             a(href='/')
               img(src='images/LOGO.svg')
-        div.nav-content
-            if (username && authenticated)
-                a(href='/me')
-                    img.img-circle.me(src='images/me.png')
-                a(href='/users/signout',style='margin:10px;') Signout
-                a(href='/users/add_article',style='margin:10px;') Add Article
-                a(href='/users/profile',style='margin:10px;') Profile
-            else
-                a(href='/me')
-                    img.img-circle.me(src='images/me.png')
-                a(href='/users/signin',style='margin:10px;') Login
-                a(href='/users/register',style='margin:10px;') Register
-                a(href='/users/forget',style='margin:10px;') Forget Password
-
     body
-    div.hero.container-fluid
-        div.hero-title
-            h1  知點
-            h2  給我一個知點，可以撐起全宇宙
-            h3  程式｜競賽｜創業 心得筆記
-    br
-    br
-    br
+    div.cd-overlay-nav
+        span
+    div.cd-overlay-content
+        span
+    a.cd-nav-trigger.pull-left  Menu
+        span.cd-icon
